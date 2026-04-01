@@ -120,16 +120,16 @@ const ProjectsSection = () => {
                       </>
                     ) : (
                       <Button
-                        variant="neon"
-                        size="sm"
-                        className="flex-1 gap-1.5 text-xs h-8"
-                        asChild
-                      >
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          Demo
-                        </a>
-                      </Button>
+                          variant="neon-outline"
+                          size="sm"
+                          className="flex-1 gap-1.5 text-xs h-8"
+                          asChild
+                        >
+                          <a href={project.code} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-3.5 h-3.5" />
+                            Código
+                          </a>
+                        </Button>
                     )}
                   </div>
               </div>
