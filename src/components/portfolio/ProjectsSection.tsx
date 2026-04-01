@@ -5,19 +5,19 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "Plataforma completa de e-commerce com carrinho de compras, pagamentos e painel administrativo.",
-    techs: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=600&q=80",
-    demo: "#",
-    code: "#",
+    title: "Todo-List",
+    description: "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
+    techs: ["React", "TypeScript", "tailwindcss"],
+    image: "src/assets/todo-List.png",
+    demo: "https://todo-two-psi-54.vercel.app",
+    code: "https://github.com/Davi-santos16/todo",
   },
   {
     title: "Task Manager App",
     description: "Aplicativo de gerenciamento de tarefas com drag & drop, filtros avançados e colaboração em tempo real.",
     techs: ["React", "TypeScript", "Tailwind", "Firebase"],
     image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&q=80",
-    demo: "#",
+    demo: "",
     code: "#",
   },
   {
@@ -52,7 +52,7 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-6xl mx-auto">
           {projects.map((project, i) => (
             <motion.article
               key={project.title}
@@ -91,20 +91,47 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-2 pt-1">
-                  <Button variant="neon-outline" size="sm" className="flex-1 gap-1.5 text-xs h-8" asChild>
-                    <a href={project.code} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-3.5 h-3.5" />
-                      Código
-                    </a>
-                  </Button>
-                  <Button variant="neon" size="sm" className="flex-1 gap-1.5 text-xs h-8" asChild>
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
+               <div className="flex gap-2 pt-1">
+                  {project.demo && project.code ? (
+                      <>
+                        <Button
+                          variant="neon-outline"
+                          size="sm"
+                          className="flex-1 gap-1.5 text-xs h-8"
+                          asChild
+                        >
+                          <a href={project.code} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-3.5 h-3.5" />
+                            Código
+                          </a>
+                        </Button>
+
+                        <Button
+                          variant="neon"
+                          size="sm"
+                          className="flex-1 gap-1.5 text-xs h-8"
+                          asChild
+                        >
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            Demo
+                          </a>
+                        </Button>
+                      </>
+                    ) : (
+                      <Button
+                        variant="neon"
+                        size="sm"
+                        className="flex-1 gap-1.5 text-xs h-8"
+                        asChild
+                      >
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Demo
+                        </a>
+                      </Button>
+                    )}
+                  </div>
               </div>
             </motion.article>
           ))}
