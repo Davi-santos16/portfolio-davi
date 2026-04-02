@@ -16,7 +16,7 @@ const projects = [
     title: "Mapa interativo - AmoTur ",
     description: "Plataforma de turismo desenvolvida em equipe com a Amotur e o Sebrae, focada na visualização e gestão de pontos turísticos em mapa interativo, com integração a API e interface moderna.",
     techs: ["React", "TypeScript", "Tailwind", "Next.js" ,"Leaflet" ],
-    image: "./public/projects/amotur.png",
+    image: "/projects/amotur.png",
     demo:"https://amotur-front-end.vercel.app/",
     code: "",
   },
