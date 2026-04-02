@@ -40,18 +40,18 @@ const HeroSection = () => {
 
           {/* Name */}
           <motion.h1
-            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            initial={{ opacity: 0, y: 24, filter: "blur(1px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
           >
-            <span className="block text-foreground">Olá, eu sou Davi Castro</span>
-            <span className="block animated-gradient-text mt-2">Dev Front-End</span>
+            <span className="block text-foreground">Davi Castro</span>
+            <span className="block animated-gradient-text mt-2">Desenvolvedor Front-End</span>
           </motion.h1>
 
           {/* Tagline */}
           <motion.p
-            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 20, filter: "blur(1px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed"

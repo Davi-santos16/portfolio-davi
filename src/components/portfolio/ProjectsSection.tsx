@@ -8,17 +8,17 @@ const projects = [
     title: "Todo-List",
     description: "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
     techs: ["React", "TypeScript", "tailwindcss"],
-    image: "src/assets/todo-List.png",
+    image: "src/assets/projects/todo-List.png",
     demo: "https://todo-two-psi-54.vercel.app",
     code: "https://github.com/Davi-santos16/todo",
   },
   {
-    title: "Task Manager App",
-    description: "Aplicativo de gerenciamento de tarefas com drag & drop, filtros avançados e colaboração em tempo real.",
-    techs: ["React", "TypeScript", "Tailwind", "Firebase"],
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&q=80",
-    demo: "",
-    code: "#",
+    title: "Mapa interativo - AmoTur ",
+    description: "Plataforma de turismo desenvolvida em equipe com a Amotur e o Sebrae, focada na visualização e gestão de pontos turísticos em mapa interativo, com integração a API e interface moderna.",
+    techs: ["React", "TypeScript", "Tailwind", "Next.js" ,"Leaflet" ],
+    image: "src/assets/projects/amotur.png",
+    demo:"https://amotur-front-end.vercel.app/",
+    code: "",
   },
   {
     title: "Portfolio Dashboard",
@@ -48,7 +48,7 @@ const ProjectsSection = () => {
             Meus <span className="gradient-text">Projetos</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Alguns dos projetos que desenvolvi recentemente
+            Alguns dos meus projetos que desenvolvi 
           </p>
         </motion.div>
 
@@ -66,7 +66,7 @@ const ProjectsSection = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
@@ -80,7 +80,7 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1 ">
                   {project.techs.map((tech) => (
                     <span
                       key={tech}
@@ -119,15 +119,15 @@ const ProjectsSection = () => {
                         </Button>
                       </>
                     ) : (
-                      <Button
-                          variant="neon-outline"
+                        <Button
+                          variant="neon"
                           size="sm"
                           className="flex-1 gap-1.5 text-xs h-8"
                           asChild
                         >
-                          <a href={project.code} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-3.5 h-3.5" />
-                            Código
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            Demo
                           </a>
                         </Button>
                     )}

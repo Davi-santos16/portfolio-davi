@@ -127,8 +127,8 @@ const AboutSection = () => {
               />
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
-                  alt="Daniel Verissimo"
+                  src="../src/assets/imgs/Davi.jpg"
+                  alt="Davi Castro"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -141,7 +141,7 @@ const AboutSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-3 gap-5 max-w-5xl mx-auto"
+          className="grid sm:grid-cols-3 gap-5  mx-auto"
         >
           {highlights.map((item) => (
             <motion.div

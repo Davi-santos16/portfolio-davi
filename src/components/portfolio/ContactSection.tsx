@@ -127,7 +127,7 @@ const ContactSection = () => {
               transition={{ delay: 0.8 }}
               className="text-xs text-muted-foreground text-center mt-6 pt-4 border-t border-border/50"
             >
-              Respondo em até 24h • Disponível para freelance
+              Disponível para freelance
             </motion.p>
           </motion.div>
         </div>
