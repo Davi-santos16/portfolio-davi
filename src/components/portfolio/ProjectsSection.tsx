@@ -8,7 +8,7 @@ const projects = [
     title: "Todo-List",
     description: "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
     techs: ["React", "TypeScript", "tailwindcss"],
-    image: "./public/projects/todo-List.png",
+    image: "/projects/todo-List.png",
     demo: "https://todo-two-psi-54.vercel.app",
     code: "https://github.com/Davi-santos16/todo",
   },
