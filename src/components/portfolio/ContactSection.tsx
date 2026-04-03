@@ -1,13 +1,41 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Github, Linkedin, Send, MessageSquare, User, Youtube } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Send,
+  MessageSquare,
+  User,
+  Youtube,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", sub: "Vamos conectar", href: "https://linkedin.com" },
-  { icon: Github, label: "GitHub", sub: "DanielVerissimo1", href: "https://github.com" },
-  { icon: Youtube, label: "YouTube", sub: "@Dandan.tutori...", href: "https://youtube.com" },
-  { icon: Mail, label: "Email", sub: "seuemail@email.com", href: "mailto:seuemail@email.com" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    sub: "Vamos conectar",
+    href: "https://www.linkedin.com/in/davicastro213/",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    sub: "Davi-santos16",
+    href: "https://github.com/Davi-santos16",
+  },
+  {
+    icon: Youtube,
+    label: "",
+    sub: "@Dandan.tutori...",
+    href: "https://youtube.com",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    sub: "davicastro213@gmail.com",
+    href: "mailto:davicastro213@gmail.com",
+  },
 ];
 
 const ContactSection = () => {
@@ -24,12 +52,15 @@ const ContactSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center space-y-3 mb-16"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase">Contato</p>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase">
+            Contato
+          </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             Vamos <span className="gradient-text">conversar?</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Tem alguma pergunta? Envie uma mensagem e responderei o mais breve possível.
+            Tem alguma pergunta? Envie uma mensagem e responderei o mais breve
+            possível.
           </p>
         </motion.div>
 
@@ -43,8 +74,12 @@ const ContactSection = () => {
             onSubmit={(e) => e.preventDefault()}
           >
             <div>
-              <h3 className="text-xl font-bold gradient-text">Envie uma mensagem!</h3>
-              <p className="text-sm text-muted-foreground mt-1">Me conte mais como posso te ajudar!</p>
+              <h3 className="text-xl font-bold gradient-text">
+                Envie uma mensagem!
+              </h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Me conte mais como posso te ajudar!
+              </p>
             </div>
 
             <div className="relative">
@@ -86,13 +121,19 @@ const ContactSection = () => {
           >
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold gradient-text">Acesse minhas redes:</h3>
-                <p className="text-sm text-muted-foreground mt-1">Entre em contato e vamos criar algo juntos!</p>
+                <h3 className="text-xl font-bold gradient-text">
+                  Acesse minhas redes:
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Entre em contato e vamos criar algo juntos!
+                </p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="w-8 h-0.5 bg-primary rounded-full" />
-                <p className="text-sm font-semibold text-foreground tracking-wide">Conecte-se Comigo</p>
+                <p className="text-sm font-semibold text-foreground tracking-wide">
+                  Conecte-se Comigo
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -113,8 +154,12 @@ const ContactSection = () => {
                       <link.icon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-foreground text-sm">{link.label}</p>
-                      <p className="text-xs text-muted-foreground truncate">{link.sub}</p>
+                      <p className="font-semibold text-foreground text-sm">
+                        {link.label}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {link.sub}
+                      </p>
                     </div>
                   </motion.a>
                 ))}

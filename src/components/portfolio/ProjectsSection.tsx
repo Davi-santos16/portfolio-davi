@@ -1,12 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const projects = [
   {
     title: "Todo-List",
-    description: "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
+    description:
+      "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
     techs: ["React", "TypeScript", "tailwindcss"],
     image: "/projects/todo-List.png",
     demo: "https://todo-two-psi-54.vercel.app",
@@ -14,17 +16,20 @@ const projects = [
   },
   {
     title: "Mapa interativo - AmoTur ",
-    description: "Plataforma de turismo desenvolvida em equipe com a Amotur e o Sebrae, focada na visualização e gestão de pontos turísticos em mapa interativo, com integração a API e interface moderna.",
-    techs: ["React", "TypeScript", "Tailwind", "Next.js" ,"Leaflet" ],
+    description:
+      "Plataforma de turismo desenvolvida em equipe com a Amotur e o Sebrae, focada na visualização e gestão de pontos turísticos em mapa interativo, com integração a API e interface moderna.",
+    techs: ["React", "TypeScript", "Tailwind", "Next.js", "Leaflet"],
     image: "/projects/amotur.png",
-    demo:"https://amotur-front-end.vercel.app/",
+    demo: "https://amotur-front-end.vercel.app/",
     code: "",
   },
   {
     title: "Portfolio Dashboard",
-    description: "Dashboard interativo para visualização de dados com gráficos dinâmicos e relatórios.",
+    description:
+      "Dashboard interativo para visualização de dados com gráficos dinâmicos e relatórios.",
     techs: ["Next.js", "Chart.js", "API REST", "Vercel"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
     demo: "#",
     code: "#",
   },
@@ -33,9 +38,10 @@ const projects = [
 const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const navigate = useNavigate();
 
   return (
-    <section id="projetos" className="py-24 sm:py-32 relative">
+    <section id="projetos" className="py-24 sm:py-14 relative">
       <div className="container px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
@@ -43,12 +49,14 @@ const ProjectsSection = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center space-y-3 mb-16"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase">Portfólio</p>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase">
+            Portfólio
+          </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             Meus <span className="gradient-text">Projetos</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Alguns dos meus projetos que desenvolvi 
+            Alguns dos meus projetos que desenvolvi
           </p>
         </motion.div>
 
@@ -57,8 +65,14 @@ const ProjectsSection = () => {
             <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              animate={
+                isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+              }
+              transition={{
+                duration: 0.6,
+                delay: 0.1 + i * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
               className="glass-hover rounded-xl overflow-hidden flex flex-col group"
             >
@@ -91,50 +105,72 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-               <div className="flex gap-2 pt-1">
+                <div className="flex gap-2 pt-1">
                   {project.demo && project.code ? (
-                      <>
-                        <Button
-                          variant="neon-outline"
-                          size="sm"
-                          className="flex-1 gap-1.5 text-xs h-8"
-                          asChild
+                    <>
+                      <Button
+                        variant="neon-outline"
+                        size="sm"
+                        className="flex-1 gap-1.5 text-xs h-8"
+                        asChild
+                      >
+                        <a
+                          href={project.code}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <a href={project.code} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-3.5 h-3.5" />
-                            Código
-                          </a>
-                        </Button>
+                          <Github className="w-3.5 h-3.5" />
+                          Código
+                        </a>
+                      </Button>
 
-                        <Button
-                          variant="neon"
-                          size="sm"
-                          className="flex-1 gap-1.5 text-xs h-8"
-                          asChild
+                      <Button
+                        variant="neon"
+                        size="sm"
+                        className="flex-1 gap-1.5 text-xs h-8"
+                        asChild
+                      >
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            Demo
-                          </a>
-                        </Button>
-                      </>
-                    ) : (
-                        <Button
-                          variant="neon"
-                          size="sm"
-                          className="flex-1 gap-1.5 text-xs h-8"
-                          asChild
-                        >
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            Demo
-                          </a>
-                        </Button>
-                    )}
-                  </div>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Demo
+                        </a>
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      variant="neon"
+                      size="sm"
+                      className="flex-1 gap-1.5 text-xs h-8"
+                      asChild
+                    >
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
             </motion.article>
           ))}
+        </div>
+        <div className="flex justify-center items-center mt-10">
+          <Button
+            disabled
+            size="lg"
+            variant="neon-outline"
+            onClick={() => navigate("/projects")}
+          >
+            Ver Mais
+          </Button>
         </div>
       </div>
     </section>
