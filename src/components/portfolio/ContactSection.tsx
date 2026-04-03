@@ -7,7 +7,7 @@ import {
   Send,
   MessageSquare,
   User,
-  Youtube,
+  PhoneCall,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -25,10 +25,10 @@ const socialLinks = [
     href: "https://github.com/Davi-santos16",
   },
   {
-    icon: Youtube,
-    label: "",
-    sub: "@Dandan.tutori...",
-    href: "https://youtube.com",
+    icon: PhoneCall,
+    label: "WhatsApp",
+    sub: "(88) 98172-4489",
+    href: "https://wa.me/5588981724489",
   },
   {
     icon: Mail,
