@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Mail,
   Github,
@@ -8,8 +8,14 @@ import {
   MessageSquare,
   User,
   PhoneCall,
+  CheckCircle,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const socialLinks = [
   {
@@ -38,9 +44,60 @@ const socialLinks = [
   },
 ];
 
+async function sendViaEmailJS(name: string, email: string, message: string) {
+  if (!(window as any).emailjs) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Falha ao carregar EmailJS"));
+      document.head.appendChild(script);
+    });
+    (window as any).emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  await (window as any).emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    name,
+    email,
+    message,
+    title: `Contato pelo portfólio — ${name}`,
+  });
+}
+
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const isFormValid = name.trim() && email.trim() && message.trim();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid) return;
+
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      await sendViaEmailJS(name, email, message);
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMsg("Não foi possível enviar. Tente pelo email direto.");
+    }
+  };
 
   return (
     <section id="contato" className="py-24 sm:py-32 relative">
@@ -71,7 +128,7 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="glass rounded-2xl p-6 sm:p-8 space-y-5"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div>
               <h3 className="text-xl font-bold gradient-text">
@@ -87,32 +144,76 @@ const ContactSection = () => {
               <input
                 type="text"
                 placeholder="Seu nome"
-                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                disabled={status === "loading" || status === "success"}
+                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all disabled:opacity-50"
               />
             </div>
+
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="email"
                 placeholder="Seu email"
-                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={status === "loading" || status === "success"}
+                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all disabled:opacity-50"
               />
             </div>
+
             <div className="relative">
               <MessageSquare className="absolute left-3 top-4 w-4 h-4 text-muted-foreground" />
               <textarea
                 placeholder="Sua mensagem"
                 rows={4}
-                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                disabled={status === "loading" || status === "success"}
+                className="w-full bg-secondary/50 border border-border rounded-lg pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none disabled:opacity-50"
               />
             </div>
-            <Button variant="neon" className="w-full gap-2">
-              <Send className="w-4 h-4" />
-              Enviar Mensagem
-            </Button>
+
+            {status === "error" && (
+              <p className="text-xs text-red-400 text-center">{errorMsg}</p>
+            )}
+
+            {status === "success" ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-green-500/10 text-green-400 text-sm font-medium border border-green-500/20"
+              >
+                <CheckCircle className="w-4 h-4" />
+                Mensagem enviada com sucesso! 🎉
+              </motion.div>
+            ) : (
+              <Button
+                variant="neon"
+                className="w-full gap-2"
+                type="submit"
+                disabled={!isFormValid || status === "loading"}
+              >
+                {status === "loading" ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Enviar Mensagem
+                  </>
+                )}
+              </Button>
+            )}
           </motion.form>
 
-          {/* Social links */}
+          
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
