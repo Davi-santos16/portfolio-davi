@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "Todo-List",
+    title: "Hive-hub - Plataforma de Inovação aberta",
     description:
-      "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
-    techs: ["React", "TypeScript", "tailwindcss"],
-    image: "/projects/todo-List.png",
-    demo: "https://todo-two-psi-54.vercel.app",
-    code: "https://github.com/Davi-santos16/todo",
+      "Hive Hub é uma plataforma web para centralização e gestão eficiente de informações, com interface moderna, responsiva e foco em desempenho e usabilidade.",
+    techs: ["Next.js", "React.js", "TypeScript", "Tailwind"],
+    image: "/projects/Hive-hub.png",
+    demo: "https://plataforma-inovacao-squad02-front-e.vercel.app/landingpage",
+    code: "",
   },
   {
     title: "Mapa interativo - AmoTur ",
@@ -24,14 +24,13 @@ const projects = [
     code: "",
   },
   {
-    title: "Portfolio Dashboard",
+    title: "Todo-List",
     description:
-      "Dashboard interativo para visualização de dados com gráficos dinâmicos e relatórios.",
-    techs: ["Next.js", "Chart.js", "API REST", "Vercel"],
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
-    demo: "#",
-    code: "#",
+      "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
+    techs: ["React", "TypeScript", "tailwindcss"],
+    image: "/projects/todo-List.png",
+    demo: "https://todo-two-psi-54.vercel.app",
+    code: "https://github.com/Davi-santos16/todo",
   },
 ];
 
