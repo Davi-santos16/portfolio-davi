@@ -1,38 +1,26 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { projects } from "@/data/projects";
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiLeaflet 
+} from "react-icons/si";
 
-const projects = [
-  {
-    title: "Hive-hub - Plataforma de Inovação aberta",
-    description:
-      "Hive Hub é uma plataforma web para centralização e gestão eficiente de informações, com interface moderna, responsiva e foco em desempenho e usabilidade.",
-    techs: ["Next.js", "React.js", "TypeScript", "Tailwind"],
-    image: "/projects/Hive-hub.png",
-    demo: "https://plataforma-inovacao-squad02-front-e.vercel.app/landingpage",
-    code: "",
-  },
-  {
-    title: "Mapa interativo - AmoTur ",
-    description:
-      "Plataforma de turismo desenvolvida em equipe com a Amotur e o Sebrae, focada na visualização e gestão de pontos turísticos em mapa interativo, com integração a API e interface moderna.",
-    techs: ["React", "TypeScript", "Tailwind", "Next.js", "Leaflet"],
-    image: "/projects/amotur.png",
-    demo: "https://amotur-front-end.vercel.app/",
-    code: "",
-  },
-  {
-    title: "Todo-List",
-    description:
-      "Sistema completo de gerenciamento de tarefas (Todo List). interface responsiva e manipulação dinâmica do DOM, proporcionando uma experiência fluida e intuitiva ao usuário.",
-    techs: ["React", "TypeScript", "tailwindcss"],
-    image: "/projects/todo-List.png",
-    demo: "https://todo-two-psi-54.vercel.app",
-    code: "https://github.com/Davi-santos16/todo",
-  },
-];
+const techIcons: Record<string, React.ElementType> = {
+  "React": SiReact,
+  "React.js": SiReact,
+  "Next.js": SiNextdotjs,
+  "TypeScript": SiTypescript,
+  "Tailwind": SiTailwindcss,
+  "tailwindcss": SiTailwindcss,
+  "Leaflet": SiLeaflet,
+};
 
 const ProjectsSection = () => {
   const ref = useRef(null);
@@ -41,17 +29,15 @@ const ProjectsSection = () => {
 
   return (
     <section id="projetos" className="py-24 sm:py-14 relative">
-      <div className="container px-4" ref={ref}>
+      <div className="container " ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center space-y-3 mb-16"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase">
-            Portfólio
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          
+          <h2 className="text-3xl sm:text-4xl mt-6 font-bold text-foreground">
             Meus <span className="gradient-text">Projetos</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
@@ -93,69 +79,30 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1 ">
-                  {project.techs.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] font-mono px-2 py-1 rounded-full bg-secondary text-muted-foreground border border-border"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {project.techs.map((tech) => {
+                    const Icon = techIcons[tech];
+                    return (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-muted-foreground transition-colors hover:text-foreground hover:bg-white/10"
+                      >
+                        {Icon && <Icon className="w-3.5 h-3.5" />}
+                        {tech === "tailwindcss" ? "Tailwind CSS" : tech === "React.js" ? "React" : tech}
+                      </span>
+                    );
+                  })}
                 </div>
 
-                <div className="flex gap-2 pt-1">
-                  {project.demo && project.code ? (
-                    <>
-                      <Button
-                        variant="neon-outline"
-                        size="sm"
-                        className="flex-1 gap-1.5 text-xs h-8"
-                        asChild
-                      >
-                        <a
-                          href={project.code}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="w-3.5 h-3.5" />
-                          Código
-                        </a>
-                      </Button>
-
-                      <Button
-                        variant="neon"
-                        size="sm"
-                        className="flex-1 gap-1.5 text-xs h-8"
-                        asChild
-                      >
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          Demo
-                        </a>
-                      </Button>
-                    </>
-                  ) : (
-                    <Button
-                      variant="neon"
-                      size="sm"
-                      className="flex-1 gap-1.5 text-xs h-8"
-                      asChild
-                    >
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        Demo
-                      </a>
-                    </Button>
-                  )}
+                <div className="flex gap-2 pt-2">
+                  <Button 
+                    variant="neon" 
+                    className="w-full gap-2 text-xs" 
+                    onClick={() => navigate(`/project/${project.slug}`)}
+                  >
+                    Ver Mais Detalhes
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Button>
                 </div>
               </div>
             </motion.article>

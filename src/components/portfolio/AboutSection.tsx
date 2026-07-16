@@ -1,6 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Heart, Code2, Globe } from "lucide-react";
+import { Heart, Code2, Globe, Quote, MessageCircle, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import profileImg from "@/assets/imgs/Davi.jpg";
 
 const highlights = [
   {
@@ -46,22 +48,20 @@ const AboutSection = () => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6"
           >
-            <div>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="text-3xl sm:text-4xl font-bold"
-              >
-                <span className="gradient-text">Olá, Me Chamo</span>
-              </motion.p>
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-primary/20 mb-2">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <p className="text-xs font-mono text-primary tracking-widest uppercase mt-[2px]">
+                  Sobre Mim
+                </p>
+              </div>
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl font-bold text-foreground mt-1"
+                className="text-4xl sm:text-5xl font-bold text-foreground leading-tight"
               >
-                Davi Castro
+                Conheça <span className="animated-gradient-text">Davi Castro</span>
               </motion.h2>
             </div>
 
@@ -82,9 +82,10 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
               animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="glass rounded-xl px-5 py-4 border-l-2 border-primary"
+              className="glass rounded-xl px-5 py-4 border-l-2 border-primary relative overflow-hidden group"
             >
-              <p className="text-sm italic text-muted-foreground">
+              <Quote className="absolute -right-2 -top-2 w-16 h-16 text-primary/10 rotate-12 group-hover:rotate-0 transition-transform duration-500" />
+              <p className="text-sm italic text-muted-foreground relative z-10">
                 "Aproveitando a IA como uma ferramenta profissional, não como um substituto."
               </p>
             </motion.div>
@@ -93,22 +94,20 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 pt-2"
             >
-              <a
-                href="#contato"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
-              >
-                <Code2 className="w-4 h-4" />
-                Fale Comigo
-              </a>
-              <a
-                href="#projetos"
-                className="inline-flex items-center gap-2 border border-primary/50 text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/10 hover:scale-105 active:scale-95 transition-all duration-300"
-              >
-                <Code2 className="w-4 h-4" />
-                Ver Projetos
-              </a>
+              <Button variant="neon" size="lg" className="gap-2" asChild>
+                <a href="#contato">
+                  <MessageCircle className="w-4 h-4" />
+                  Fale Comigo
+                </a>
+              </Button>
+              <Button variant="neon-outline" size="lg" className="gap-2" asChild>
+                <a href="#projetos">
+                  <Code2 className="w-4 h-4" />
+                  Ver Projetos
+                </a>
+              </Button>
             </motion.div>
           </motion.div>
 
@@ -127,9 +126,9 @@ const AboutSection = () => {
               />
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-xl">
                 <img
-                  src="../src/assets/imgs/Davi.jpg"
+                  src={profileImg}
                   alt="Davi Castro"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                 />
               </div>
             </div>
@@ -141,24 +140,26 @@ const AboutSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-3 gap-5  mx-auto"
+          className="grid sm:grid-cols-3 gap-5 lg:gap-8 mx-auto"
         >
           {highlights.map((item) => (
             <motion.div
               key={item.title}
               variants={itemVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="glass-hover rounded-xl p-6 space-y-3"
+              className="glass rounded-2xl p-6 sm:p-8 space-y-4 hover:border-primary/40 transition-colors group"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-primary" />
+              <div className="flex items-center gap-4 border-b border-border/50 pb-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-semibold text-foreground tracking-wide text-sm">
+                <h3 className="font-bold text-foreground tracking-wide text-base group-hover:text-primary transition-colors">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed pt-2">
+                {item.desc}
+              </p>
             </motion.div>
           ))}
         </motion.div>

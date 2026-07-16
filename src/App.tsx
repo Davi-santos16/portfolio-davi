@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Projects from "./pages/Projects.tsx";
+import ProjectDetails from "./pages/ProjectDetails.tsx";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="projects" element={<Projects/>} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/project/:slug" element={<ProjectDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
