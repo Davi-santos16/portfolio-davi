@@ -53,34 +53,36 @@ export default function Projects() {
               </Button>
             </motion.div>
 
-            {/* Header section matching the design */}
-            <div className="space-y-4 max-w-2xl">
-              <p className="text-blue-500 font-bold tracking-widest uppercase text-sm">
-                WORK
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground tracking-tight">
-                Projetos
-              </h1>
-              <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
-                Aplicações web, mobile e full-stack construídas para resolver problemas reais.
-              </p>
-            </div>
+            {/* Header and Filters Container */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+              {/* Header section */}
+              <div className="space-y-4 max-w-2xl">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground tracking-tight">
+                  Projetos
+                </h1>
+                <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
+                  Aplicações web, mobile e full-stack construídas para resolver problemas reais.
+                </p>
+              </div>
 
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-2 p-1.5 glass rounded-full w-max border border-white/5">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeCategory === category
-                      ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+              {/* Filter Tabs */}
+              <div className="w-full lg:w-auto">
+                <div className="flex flex-wrap lg:flex-nowrap gap-1.5 sm:gap-2 p-1.5 glass rounded-2xl sm:rounded-full border border-white/5 w-full lg:w-max">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={`px-3 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none text-center ${
+                        activeCategory === category
+                          ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                          : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Project Grid */}

@@ -78,12 +78,7 @@ const TechSection = () => {
           
           {/* Left Column: Heading */}
           <div className="lg:col-span-5 lg:sticky lg:top-32 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-primary/20">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <p className="text-xs font-mono text-primary tracking-widest uppercase mt-[2px]">
-                Tech Stack
-              </p>
-            </div>
+
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.1] tracking-tight">
               As <span className="animated-gradient-text">ferramentas certas</span> para cada projeto.
             </h2>
@@ -114,7 +109,7 @@ const TechSection = () => {
                       animate={isInView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.4, delay: 0.2 + i * 0.03, ease: "easeOut" }}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="glass rounded-full px-4 py-2 flex items-center gap-2 transition-all duration-300 hover:bg-white/5 hover:border-primary/30 group"
+                      className="bg-card/60 border border-border/50 rounded-full px-4 py-2 flex items-center gap-2 transition-colors duration-300 hover:bg-white/5 hover:border-primary/30 group"
                       style={{ "--hover-color": tech.color } as React.CSSProperties}
                     >
                       {tech.icon ? (

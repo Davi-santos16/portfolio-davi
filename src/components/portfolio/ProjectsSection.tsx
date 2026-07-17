@@ -65,13 +65,15 @@ const ProjectsSection = () => {
             </motion.div>
           ))}
         </div>
-        <div className="flex justify-center items-center mt-10">
+        <div className="flex justify-center items-center mt-12 mb-4">
           <Button
             size="lg"
-            variant="neon-outline"
+            variant="neon"
+            className="text-base px-8 py-6 rounded-full group font-semibold shadow-[0_0_15px_-3px_hsl(var(--primary)/0.4)]"
             onClick={() => navigate("/projects")}
           >
             Ver Todos os Projetos
+            <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />
           </Button>
         </div>
       </div>

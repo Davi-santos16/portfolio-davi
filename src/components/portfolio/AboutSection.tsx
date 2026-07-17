@@ -49,12 +49,7 @@ const AboutSection = () => {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-primary/20 mb-2">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <p className="text-xs font-mono text-primary tracking-widest uppercase mt-[2px]">
-                  Sobre Mim
-                </p>
-              </div>
+
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
