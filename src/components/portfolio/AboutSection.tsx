@@ -1,8 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Heart, Code2, Globe, Quote, MessageCircle, FileText } from "lucide-react";
+import { Heart, Code2, Globe, Quote, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import profileImg from "@/assets/imgs/Davi.jpg";
+import profileImg from "@/assets/imgs/davi.jpg";
 
 const highlights = [
   {
@@ -103,7 +103,7 @@ const AboutSection = () => {
                 </a>
               </Button>
               <Button variant="neon-outline" size="lg" className="gap-2" asChild>
-                <a href="#projetos">
+                <a href="#projetos" >
                   <Code2 className="w-4 h-4" />
                   Ver Projetos
                 </a>
@@ -128,7 +128,7 @@ const AboutSection = () => {
                 <img
                   src={profileImg}
                   alt="Davi Castro"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  className=" transition-transform duration-700 hover:scale-110"
                 />
               </div>
             </div>

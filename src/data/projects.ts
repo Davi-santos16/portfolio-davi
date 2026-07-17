@@ -9,6 +9,7 @@ export interface Project {
   demo: string;
   code: string;
   features: string[];
+  category: "Web App" | "Mobile App" | "Full-Stack";
 }
 
 export const projects: Project[] = [
@@ -27,7 +28,8 @@ export const projects: Project[] = [
       "Dashboard interativo com métricas de inovação",
       "Design responsivo otimizado para dispositivos móveis e desktop",
       "Integração com APIs REST para sincronização de dados em tempo real"
-    ]
+    ],
+    category: "Full-Stack"
   },
   {
     slug: "mapa-interativo-amotur",
@@ -44,7 +46,8 @@ export const projects: Project[] = [
       "Filtros dinâmicos por categoria de turismo",
       "Painel de administração para adicionar novos pontos",
       "Integração contínua e consumo de API de terceiros"
-    ]
+    ],
+    category: "Web App"
   },
   {
     slug: "todo-list",
@@ -61,6 +64,7 @@ export const projects: Project[] = [
       "Persistência de dados utilizando LocalStorage",
       "Animações suaves nas transições de estado das tarefas",
       "Design minimalista focado na produtividade do usuário"
-    ]
+    ],
+    category: "Web App"
   }
 ];
